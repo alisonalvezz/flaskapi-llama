@@ -1,0 +1,8 @@
+langchain
+langchain-community
+langchain-nomic
+faiss-cpu
+tiktoken
+PyMuPDF
+gpt4all
+langchain_core
