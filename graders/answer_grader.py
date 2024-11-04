@@ -16,6 +16,8 @@ Score:
 
 A score of yes means that the student's answer meets all of the criteria. This is the highest (best) score. 
 
+Do not be exigent, if the response mentions the question but doesnt include specific details, it its okay to return a score of yes.
+
 The student can receive a score of yes if the answer contains extra information that is not explicitly asked for in the question.
 
 A score of no means that the student's answer does not meet all of the criteria. This is the lowest possible score you can give.

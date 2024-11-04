@@ -13,11 +13,9 @@ tavily_client = TavilyClient(api_key="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")
 def main(query):
     print(f"Consulta recibida: {query}")
     routing_decision = route_question(llm_json_mode, {"question": query})
-    print(f"Decisión de enrutamiento: {routing_decision}")
     datasource = routing_decision.get("datasource")
 
     if datasource == "vectorstore":
-        print("Usando vectorstore para recuperar documentos.")
         documents = vector_retriever.get_relevant_documents(query)
         print(f"Documentos recuperados: {len(documents)}")
 
@@ -40,6 +38,10 @@ def main(query):
 
     answer = generate_answer(relevant_docs, query)
     print(f"Respuesta generada: {answer}")
+
+    if not answer or answer == None or answer == "{}":
+        print("No se generó ninguna respuesta válida, realizando búsqueda web.")
+        return tavily_client.qna_search(query=query)
 
     hallucination_check = check_hallucination(llm_json_mode, relevant_docs, answer)
     print(f"Chequeo de alucinaciones: {hallucination_check}")

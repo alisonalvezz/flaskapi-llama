@@ -25,6 +25,8 @@ A score of no means that the student's answer does not meet all of the criteria.
 
 Explain your reasoning in a step-by-step manner to ensure your reasoning and conclusion are correct. 
 
+If the response is null or {}, return a JSON with a single key, binary_score, that is 'no'.
+
 Avoid simply stating the correct answer at the outset."""
 
 hallucination_grader_prompt = """FACTS: \n\n {documents} \n\n STUDENT ANSWER: {generation}. 

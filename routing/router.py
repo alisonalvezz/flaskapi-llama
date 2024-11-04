@@ -13,13 +13,15 @@ The vectorstore contains documents related to the following topics:
 - Sentence transformers
 - Sorting algorithms in Python
 
-For questions specifically about these topics, respond with 'vectorstore'. 
-For all other questions, including general inquiries and current events, respond with 'websearch'.
+Only answer with 'vectorstore' for questions about these topics.
+For every all other questions, including general inquiries and current events, respond with 'websearch'.
 
 Examples of websearch questions:
 - "What is a language model?"
 - "What are the latest trends in technology?"
 - "What is the latest news about AI?"
+- "¿Quien es Rodrigo Mato?"
+- "Que es gpt4all?"
 Everything that isnt related to ipaddress, sentence bert, sentence transformers or sorting algorithms should be answered with 'websearch'.
 
 Return only a JSON object with a single key, 'datasource', containing either 'websearch' or 'vectorstore', with no additional text."""
