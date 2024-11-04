@@ -1,13 +1,16 @@
 from langchain_core.messages import HumanMessage, SystemMessage
-from utils.init_llama import llm_json_mode
+from langchain_ollama import ChatOllama
 
+local_llm = "llama3.2:1b-instruct-fp16"
+llm = ChatOllama(model=local_llm, temperature=0.7)
+llm_json_mode = ChatOllama(model=local_llm, temperature=0, format="json")
 answer_grader_instructions = """You are a teacher grading a quiz. 
 
 You will be given a QUESTION and a STUDENT ANSWER. 
 
 Here is the grade criteria to follow:
 
-(1) The STUDENT ANSWER helps to answer the QUESTION
+(1) The STUDENT ANSWER helps to answer the QUESTION.
 
 Score:
 
@@ -37,11 +40,11 @@ def evaluate_answer(question, answer):
 
     print("Result:", result)
 
-    if 'binary_score' in result and 'explanation' in result:
-        binary_score = result['binary_score']
-        explanation = result['explanation']
-        return binary_score, explanation
-    else:
-        print("El resultado no contiene las claves esperadas.")
-        return None, None
+    if isinstance(result, dict):
+        binary_score = result.get('binary_score')
+        explanation = result.get('explanation')
 
+        if binary_score is not None and explanation is not None:
+            return binary_score, explanation
+
+    return None, None

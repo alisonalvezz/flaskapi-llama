@@ -1,8 +1,8 @@
 import json
 from langchain_core.messages import HumanMessage
-from utils.init_llama import llm_json_mode
+from init_llama import llm_json_mode
 
-rag_prompt = rag_prompt = """You are an assistant for question-answering tasks. 
+rag_prompt = """You are an assistant for question-answering tasks. 
 
 Here is the context to use to answer the question:
 

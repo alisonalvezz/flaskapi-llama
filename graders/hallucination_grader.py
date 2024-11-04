@@ -1,6 +1,10 @@
-from utils.init_llama import llm_json_mode
 from langchain.schema import SystemMessage, HumanMessage
 import json
+from langchain_ollama import ChatOllama
+
+local_llm = "llama3.2:1b-instruct-fp16"
+llm = ChatOllama(model=local_llm, temperature=0.7)
+llm_json_mode = ChatOllama(model=local_llm, temperature=0, format="json")
 
 hallucination_grader_instructions = """
 You are a teacher grading a quiz. 
@@ -15,7 +19,7 @@ Here is the grade criteria to follow:
 
 Score:
 
-A score of yes means that the student's answer meets all of the criteria. This is the highest (best) score. 
+A score of yes means that the student's answer meets all of the criteria and can lack of specific details and two sentences to respond are okay. This is the highest (best) score. 
 
 A score of no means that the student's answer does not meet all of the criteria. This is the lowest possible score you can give.
 

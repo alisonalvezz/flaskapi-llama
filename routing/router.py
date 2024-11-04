@@ -1,25 +1,50 @@
 import json
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_ollama import ChatOllama
 
+local_llm = "llama3.2:1b-instruct-fp16"
+llm = ChatOllama(model=local_llm, temperature=0.7)
+llm_json_mode = ChatOllama(model=local_llm, temperature=0, format="json")
 
 router_instructions = """You are an expert at routing a user question to a vectorstore or web search.
-The vectorstore contains documents related to agents, prompt engineering, and adversarial attacks.
-Use the vectorstore for questions on these topics. For all else, and especially for current events, use web-search.
-Return JSON with single key, datasource, that is 'websearch' or 'vectorstore' depending on the question."""
+The vectorstore contains documents related to the following topics: 
+- IP address
+- Sentence BERT (sbert)
+- Sentence transformers
+- Sorting algorithms in Python
 
-def route_query(llm_json_mode, query):
-    """
-    Función para evaluar la consulta y decidir el datasource.
+For questions specifically about these topics, respond with 'vectorstore'. 
+For all other questions, including general inquiries and current events, respond with 'websearch'.
 
-    Parameters:
-    llm_json_mode (llm instance): El modelo de lenguaje utilizado.
-    query (str): La consulta del usuario.
+Examples of websearch questions:
+- "What is a language model?"
+- "What are the latest trends in technology?"
+- "What is the latest news about AI?"
+Everything that isnt related to ipaddress, sentence bert, sentence transformers or sorting algorithms should be answered with 'websearch'.
 
-    Returns:
-    dict: JSON con la clave 'datasource' que indica si usar 'websearch' o 'vectorstore'.
-    """
-    response = llm_json_mode.invoke(
+Return only a JSON object with a single key, 'datasource', containing either 'websearch' or 'vectorstore', with no additional text."""
+
+def route_question(llm_json_mode, question):
+    print("---ROUTE QUESTION---")
+    
+    route_question_response = llm_json_mode.invoke(
         [SystemMessage(content=router_instructions)]
-        + [HumanMessage(content=query)]
+        + [HumanMessage(content=question["question"])]
     )
-    return json.loads(response.content)
+    
+    try:
+        response_content = json.loads(route_question_response.content)
+        source = response_content["datasource"]
+    except (KeyError, json.JSONDecodeError) as e:
+        print(f"Error al procesar la respuesta del modelo: {e}")
+        return {"datasource": "error"}
+    
+    if source == "websearch":
+        print("---ROUTE QUESTION TO WEB SEARCH---")
+        return {"datasource": "websearch"}
+    elif source == "vectorstore":
+        print("---ROUTE QUESTION TO RAG---")
+        return {"datasource": "vectorstore"}
+    else:
+        print(f"Fuente desconocida: {source}")
+        return {"datasource": "error"}

@@ -6,3 +6,6 @@ tiktoken
 PyMuPDF
 gpt4all
 langchain_core
+langchain_ollama
+tavily-python
+flask
