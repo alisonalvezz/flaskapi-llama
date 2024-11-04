@@ -33,8 +33,10 @@ Este proyecto tiene la siguiente arquitectura
 |- README.md
 |- requirements.txt
 ```
+---
 
-El diagrama de flujo del proyecto es el siguiente:
+## El diagrama de flujo del proyecto es el siguiente:
+
 ![Diagrama de flujo](https://github.com/user-attachments/assets/366a7876-a111-4a53-b78b-2f8797f529a7)
 
 Al ingresar la pregunta, tenemos un **router** que define si el prompt tiene que ver con los documentos que ya hay en la base de datos vectorial.
@@ -57,3 +59,21 @@ Para instalar los requerimentos del proyecto.
 Para instalar el modelo local y poder correr el proyecto.
 
 Se sugiere utilizar Postman para poder visualizar la interacción con la API.
+Es necesario que la consulta se realice en formato JSON, ej:
+```
+{
+    "query": "¿Qué es Willinn?"
+}
+```
+La respuesta será algo así:
+```
+{
+    "response": "Willinn es una empresa de tecnología que nació como parte de Zonamerica en Uruguay. Se especializa en servicios de software, ciberseguridad y soluciones de tecnología para empresas en Latinoamérica y a nivel mundial. Con 30 años de experiencia, Willinn se enfoca en llevar a las empresas al siguiente nivel a través de soluciones efectivas que van desde el negocio a la tecnología, incluyendo servicios en la nube, ciberseguridad y operaciones de TI. Willinn cuenta con 350 clientes y proyecta un crecimiento continuo en América."
+}
+```
+
+---
+
+### Mejoras del proyecto:
+Las mejoras que pueden hacerse en el proyecto son:
+- Mejorar prompts dados a la IA para mayor exactitud en las respuestas. Por ejemplo: Cuando se pregunta si la pregunta responde a la respuesta, o cuando se pregunta si la respuesta está alucinada. Mejorar esto ayudaría significativamente la precisión de clasificación de las preguntas (si está alucinada o no, si tiene que ver con los vectorstores, etcétera).
