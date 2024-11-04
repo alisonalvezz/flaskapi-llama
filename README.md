@@ -58,6 +58,8 @@ Para instalar los requerimentos del proyecto.
 ```ollama pull llama3.2:1b-instruct-fp16```
 Para instalar el modelo local y poder correr el proyecto.
 
+El proyecto se inicia ejecutando ```app.py```
+
 Se sugiere utilizar Postman para poder visualizar la interacción con la API.
 Es necesario que la consulta se realice en formato JSON, ej:
 ```
