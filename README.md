@@ -1,4 +1,4 @@
-# Prueba técnica Willinn - IA
+# Proyecto con modelo LlaMa en Flask
 Este proyecto tiene la siguiente arquitectura
 ```
 |- graders
