@@ -64,13 +64,13 @@ Se sugiere utilizar Postman para poder visualizar la interacción con la API.
 Es necesario que la consulta se realice en formato JSON, ej:
 ```
 {
-    "query": "¿Qué es Willinn?"
+    "query": "Quien es Alison Alvez?"
 }
 ```
 La respuesta será algo así:
 ```
 {
-    "response": "Willinn es una empresa de tecnología que nació como parte de Zonamerica en Uruguay. Se especializa en servicios de software, ciberseguridad y soluciones de tecnología para empresas en Latinoamérica y a nivel mundial. Con 30 años de experiencia, Willinn se enfoca en llevar a las empresas al siguiente nivel a través de soluciones efectivas que van desde el negocio a la tecnología, incluyendo servicios en la nube, ciberseguridad y operaciones de TI. Willinn cuenta con 350 clientes y proyecta un crecimiento continuo en América."
+    "response": "Alison Alvez es una desarrolladora de software y especialista en Machine Learning con sede en Montevideo, Uruguay. Está apasionada por la innovación y constantemente se está formando en el desarrollo de software y Machine Learning. Es co-organizadora de AWS Girls UY y se destaca por su curiosidad, proactividad y compromiso en mejorar sus habilidades y contribuir significativamente en los proyectos en los que participa. Actualmente, está especializándose en Machine Learning en Holberton School."
 }
 ```
 
